@@ -1,5 +1,5 @@
 # Scripts_For_Help
 
 ```bash
-git clone https://github.com/faizan35/Scripts_For_Help.git
+https://github.com/faizan35/scripts_For_Help.git
 ```
