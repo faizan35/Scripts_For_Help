@@ -12,6 +12,9 @@ sudo rm -rf /etc/kubernetes /var/lib/kubernetes /etc/cni /opt/cni /var/lib/cni /
 sudo ufw disable
 sudo ufw reset
 
+# Remove Docker images
+sudo docker rmi -f $(sudo docker images -aq)
+
 # Remove Weave networking (if applied)
 kubectl delete -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
