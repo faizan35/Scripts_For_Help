@@ -46,7 +46,7 @@ sudo systemctl stop kubelet
 sudo systemctl disable kubelet
 
 # Uninstall the Kubernetes packages
-sudo apt-get remove -y kubelet kubeadm kubectl
+sudo apt autoremove kubeadm kubectl kubelet -y --allow-change-held-packages
 
 # Remove the Kubernetes apt repository configuration
 sudo rm /etc/apt/sources.list.d/kubernetes.list
@@ -57,8 +57,13 @@ sudo rm /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 # Unmark hold on the packages
 sudo apt-mark unhold kubelet kubeadm kubectl
 
+rm -rf $HOME/.kube
+
 # Clean up any unused packages
 sudo apt-get autoremove -y
+
+
+
 
 # Optionally, remove Docker if it was installed by the script
 if dpkg -l docker.io | grep -q installed; then
