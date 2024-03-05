@@ -15,7 +15,7 @@
 
 
 
-kubeadm init --control-plane-endpoint
+kubeadm init
 
 
 mkdir -p $HOME/.kube
