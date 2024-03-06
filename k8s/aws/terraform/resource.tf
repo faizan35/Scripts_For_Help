@@ -17,6 +17,8 @@ resource "aws_instance" "k8s-master" {
 
   key_name = "k8s-key"
 
+  security_groups = [ aws_security_group.sg ]
+
   tags = {
     Name = "Master"
   }
@@ -26,6 +28,8 @@ resource "aws_instance" "k8s-master" {
 resource "aws_instance" "k8s-worker" {
   ami           = "ami-00381a880aa48c6c6"
   instance_type = "t3.micro"
+
+  security_groups = [ aws_security_group.sg ]
 
   tags = {
     Name = "Worker"
