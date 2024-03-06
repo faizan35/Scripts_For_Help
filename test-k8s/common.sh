@@ -2,7 +2,7 @@
 
 sudo apt-get update
 
-sudo swapoff -a
+
 sudo apt install docker.io -y
 
 sudo systemctl enable --now docker
@@ -67,13 +67,13 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 
 # =================================   PORT   ====================================
 
-# install ufw
-sudo apt-get install ufw
+# # install ufw
+# sudo apt-get install ufw
 
-# Allow ssh 
-# sudo ufw allow ssh
+# # Allow ssh 
+# # sudo ufw allow ssh
 
-sudo ufw enable
-sudo ufw status
+# sudo ufw enable
+# sudo ufw status
 
 #####################################################################

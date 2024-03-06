@@ -13,7 +13,7 @@ vagrant_up() {
 vagrant_destroy() {
     echo "Destroying both VMs..."
     cd master && vagrant destroy -f &
-    cd ../node && vagrant destroy -f &
+    cd node && vagrant destroy -f &
     wait
     echo "Both VMs are destroyed."
 }
