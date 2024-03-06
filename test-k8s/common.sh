@@ -23,7 +23,9 @@ echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:/
 sudo apt-get update -y
 
 
-sudo apt-get install -y kubeadm=1.28.7-00 kubectl=1.28.7-00 kubelet=1.28.7-00
+sudo apt-get install -y kubeadm kubectl kubelet
+sudo apt-mark hold kubelet kubeadm kubectl
+# sudo apt-get install -y kubeadm=1.28.7-00 kubectl=1.28.7-00 kubelet=1.28.7-00
 
 
 
@@ -63,7 +65,7 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 sudo apt-get install ufw
 
 # Allow ssh 
-sudo ufw allow ssh
+# sudo ufw allow ssh
 
 sudo ufw enable
 sudo ufw status
