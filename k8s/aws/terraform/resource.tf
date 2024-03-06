@@ -26,7 +26,7 @@ resource "aws_subnet" "k8s-subnet" {
   vpc_id     = aws_vpc.k8s-vpc.id
   cidr_block = "10.0.1.0/24"
 
-  map_public_ip_on_launch = true
+  # map_public_ip_on_launch = true
 
   tags = {
     Name = "k8s-subnet"
@@ -110,7 +110,7 @@ resource "aws_instance" "k8s-master" {
   vpc_security_group_ids = [ aws_security_group.sg.id ]
   subnet_id = aws_subnet.k8s-subnet.id
 
-  associate_public_ip_address = true
+  # associate_public_ip_address = true
 
   tags = {
     Name = "Master"
@@ -125,7 +125,7 @@ resource "aws_instance" "k8s-worker" {
   vpc_security_group_ids = [ aws_security_group.sg.id ]
   subnet_id = aws_subnet.k8s-subnet.id
 
-  associate_public_ip_address = true
+  # associate_public_ip_address = true
 
   tags = {
     Name = "Worker"
