@@ -11,7 +11,7 @@
 
 
 # EC2
-resource "aws_instance" "k8s-cluster" {
+resource "aws_instance" "k8s-master" {
   ami           = "ami-00381a880aa48c6c6"
   instance_type = "t3.small"
 
@@ -23,7 +23,7 @@ resource "aws_instance" "k8s-cluster" {
 }
 
 
-resource "aws_instance" "k8s-cluster" {
+resource "aws_instance" "k8s-worker" {
   ami           = "ami-00381a880aa48c6c6"
   instance_type = "t3.micro"
 
