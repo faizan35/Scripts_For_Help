@@ -10,31 +10,7 @@
 # }
 
 
-# EC2
-resource "aws_instance" "k8s-master" {
-  ami           = "ami-00381a880aa48c6c6"
-  instance_type = "t3.small"
 
-  key_name = "k8s-key"
-
-  security_groups = [ aws_security_group.sg.name ]
-
-  tags = {
-    Name = "Master"
-  }
-}
-
-
-resource "aws_instance" "k8s-worker" {
-  ami           = "ami-00381a880aa48c6c6"
-  instance_type = "t3.micro"
-
-  security_groups = [ aws_security_group.sg.name ]
-
-  tags = {
-    Name = "Worker"
-  }
-}
 
 # vpc
 resource "aws_vpc" "k8s-vpc" {
@@ -80,3 +56,28 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
 
 
 
+# EC2
+resource "aws_instance" "k8s-master" {
+  ami           = "ami-00381a880aa48c6c6"
+  instance_type = "t3.small"
+
+  key_name = "k8s-key"
+
+  security_groups = [ aws_security_group.sg.name ]
+
+  tags = {
+    Name = "Master"
+  }
+}
+
+
+resource "aws_instance" "k8s-worker" {
+  ami           = "ami-00381a880aa48c6c6"
+  instance_type = "t3.micro"
+
+  security_groups = [ aws_security_group.sg.name ]
+
+  tags = {
+    Name = "Worker"
+  }
+}
