@@ -32,12 +32,20 @@ resource "aws_instance" "k8s-worker" {
   }
 }
 
+# vpc
+
+# data "aws_vpc" "selected" {
+#   default = true
+# }
+
+
+
 # Security Group
 
 resource "aws_security_group" "sg" {
   name        = "k8s-sg"
   description = "Allow TLS inbound traffic and all outbound traffic"
-  # vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.main.id
   tags = {
     Name = "k8s-sg"
   }
@@ -45,7 +53,7 @@ resource "aws_security_group" "sg" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
   security_group_id = aws_security_group.sg.id
-  # cidr_ipv4         = aws_vpc.main.cidr_block
+  cidr_ipv4         = aws_vpc.main.cidr_block
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -53,7 +61,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_k8s_ipv4" {
   security_group_id = aws_security_group.sg.id
-  # cidr_ipv4         = aws_vpc.main.cidr_block
+  cidr_ipv4         = aws_vpc.main.cidr_block
   from_port         = 6443
   ip_protocol       = "tcp"
   to_port           = 6443
