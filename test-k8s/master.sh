@@ -17,10 +17,10 @@ sudo kubeadm token create --print-join-command
 # =================================   PORT   ====================================
 
 # Allow 6443
-sudo ufw allow 6443
+# sudo ufw allow 6443
 
-sudo ufw enable
-sudo ufw status
+# sudo ufw enable
+# sudo ufw status
 
 
 #####################################################################
