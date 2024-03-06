@@ -1,5 +1,10 @@
 # .vagrant
-k8s/vagrant
-
 k8s/vagrant/.vagrant
 k8s/vagrant/ubuntu-bionic-18.04-cloudimg-console.log
+
+
+k8s/vagrant/master/.vagrant
+k8s/vagrant/master/ubuntu-bionic-18.04-cloudimg-console.log
+
+k8s/vagrant/node/.vagrant
+k8s/vagrant/node/ubuntu-bionic-18.04-cloudimg-console.log
