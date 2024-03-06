@@ -15,9 +15,21 @@
 # vpc
 resource "aws_vpc" "k8s-vpc" {
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "k8s-vpc"
+  }  
 }
 
+# subnet
+resource "aws_subnet" "k8s-subnet" {
+  vpc_id     = aws_vpc.k8s-vpc.id
+  cidr_block = "10.0.1.0/24"
 
+  tags = {
+    Name = "k8s-subnet"
+  }
+}
 
 
 
@@ -64,6 +76,7 @@ resource "aws_instance" "k8s-master" {
   key_name = "k8s-key"
 
   vpc_security_group_ids = [ aws_security_group.sg.id ]
+  subnet_id = aws_subnet.k8s-subnet.id
 
   tags = {
     Name = "Master"
