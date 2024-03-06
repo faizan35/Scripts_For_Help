@@ -1,0 +1,1 @@
+# instance_type = ["t3.small", "t3.micro"]
