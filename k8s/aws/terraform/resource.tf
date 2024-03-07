@@ -122,6 +122,8 @@ resource "aws_instance" "k8s-worker" {
   ami           = "ami-00381a880aa48c6c6"
   instance_type = "t3.micro"
 
+  key_name = "k8s-key"
+
   vpc_security_group_ids = [ aws_security_group.sg.id ]
   subnet_id = aws_subnet.k8s-subnet.id
 
