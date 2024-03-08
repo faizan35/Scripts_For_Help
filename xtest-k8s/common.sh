@@ -1,8 +1,16 @@
 #!/bin/bash
 
+
+
+
 # Add Docker's official GPG key:
 sudo apt-get update
-sudo apt-get install ca-certificates curl
+
+sudo apt-get install -y ca-certificates curl ufw
+
+sudo ufw allow 6443
+sudo ufw enable
+
 apt-get install -y cri-o cri-o-runc
 
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -109,7 +117,6 @@ kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/we
 
 
 
-sudo ufw enable
 sudo ufw status
 
 #####################################################################
