@@ -24,40 +24,16 @@ cri-dockerd --network-plugin=${plugin}
 /usr/lib/systemd/system/cri-docker.service
 /etc/systemd/system/multi-user.target.wants/cri-docker.service
 systemctl daemon-reload
+
 #######################################
-# Define the desired network plugin
-network_plugin="weave"
-
-# Check if cri-dockerd binary is available
-if ! command -v cri-dockerd &>/dev/null; then
-    echo "Error: cri-dockerd binary not found. Make sure cri-dockerd is installed."
-    exit 1
-fi
-
-# Check if systemd unit file exists
-unit_file="/etc/systemd/system/cri-docker.service"
-if [ ! -f "$unit_file" ]; then
-    echo "Error: systemd unit file '$unit_file' not found."
-    exit 1
-fi
-
-# Check if the network plugin option already exists in the unit file
-if grep -q "network-plugin=$network_plugin" "$unit_file"; then
-    echo "Network plugin is already set to $network_plugin. No action needed."
-    exit 0
-fi
-
-# Add the network plugin option to the ExecStart command in the systemd unit file
-sed -i "s|^ExecStart=/usr/local/bin/cri-dockerd |ExecStart=/usr/local/bin/cri-dockerd --network-plugin=$network_plugin |" "$unit_file"
-
-# Reload systemd to apply changes
+git clone https://github.com/Mirantis/cri-dockerd.git
+cd cri-dockerd
+mkdir -p /usr/local/bin
+install -o root -g root -m 0755 cri-dockerd /usr/local/bin/cri-dockerd
+install packaging/systemd/* /etc/systemd/system
+sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
 systemctl daemon-reload
-
-# Restart cri-dockerd service
-systemctl restart cri-dockerd
-
-echo "Default network plugin is now set to $network_plugin."
-
+systemctl enable --now cri-docker.socket
 #######################################
 
 # sudo apt install docker.io -y
