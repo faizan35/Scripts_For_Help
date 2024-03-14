@@ -18,12 +18,11 @@
 
 set -euxo pipefail
 
-# Disable swap
+# disable swap
 sudo swapoff -a
 
-# Keep the swap off during reboot
-(sudo crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | sudo crontab -
-
+# keeps the swaf off during reboot
+(crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 sudo apt-get update -y
 
 # Create the .conf file to load the modules at bootup
