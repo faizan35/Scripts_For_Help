@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "master" do |master|
-    master.vm.box = "ubuntu/bionic64"
+    master.vm.box = "bento/ubuntu-22.04"
     master.vm.hostname = "master"
     master.vm.network "public_network", bridge: "Qualcomm QCA9377 802.11ac Wireless Adapter", mac: "080027160697"
     master.vm.provider "virtualbox" do |vb|
@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "node" do |node|
-    node.vm.box = "ubuntu/bionic64"
+    node.vm.box = "bento/ubuntu-22.04"
     node.vm.hostname = "node"
     node.vm.network "public_network", bridge: "Qualcomm QCA9377 802.11ac Wireless Adapter", mac: "08002710F69E"
     node.vm.provider "virtualbox" do |vb|
