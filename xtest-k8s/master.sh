@@ -25,9 +25,9 @@ sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
 # sudo chmod 644 $config_path/configs/config
 
 # Install Calico Network Plugin
-curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml -O
+# sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml -O
 
-kubectl apply -f calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
 
 # # Install Metrics Server
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/main/deploy/kubernetes/metrics-server-deployment.yaml
