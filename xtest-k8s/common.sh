@@ -1,19 +1,6 @@
 #!/bin/bash
 
 
-
-
-# Add Docker's official GPG key:
-# sudo apt-get update
-
-# sudo apt-get install -y ufw
-
-# sudo ufw allow 6443
-# sudo ufw enable
-
-##########################
-
-
 # Common setup for all servers (Control Plane and Nodes)
 
 set -euxo pipefail
@@ -75,6 +62,11 @@ sudo apt-get install -y jq
 sudo systemctl enable --now kubelet
 
 # =================================   PORT   ====================================
+
+sudo apt-get install -y ufw
+
+sudo ufw allow 6443
+sudo ufw enable
 
 
 
