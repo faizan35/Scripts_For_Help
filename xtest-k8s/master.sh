@@ -1,38 +1,42 @@
 #!/bin/bash
+#
+# Setup for Control Plane (Master) servers
 
-# sudo kubeadm init
+set -euxo pipefail
 
-# # kubeadm init --apiserver-advertise-address 192.168.0.11 --pod-network-cidr 10.0.0.0/16
+sudo kubeadm config images pull
 
-# # kubeadm init --control-plane-endpoint 192.168.0.11
+echo "Preflight Check Passed: Downloaded All Required Images"
 
-# mkdir -p $HOME/.kube
-# sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-# sudo chown $(id -u):$(id -g) $HOME/.kube/config
+sudo kubeadm init
 
+mkdir -p "$HOME"/.kube
+sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
+sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
 
-# # sudo kubeadm token create --print-join-command
+# Save Configs
+config_path="/etc/kubernetes"
 
-# Initialize Kubernetes cluster
-sudo kubeadm init --control-plane-endpoint >> /home/ubuntu/k8s-cluster.output
+sudo mkdir -p $config_path/configs
+sudo cp -i /etc/kubernetes/admin.conf $config_path/configs/config
+sudo chmod 644 $config_path/configs/config
 
-# Configure kubectl for non-root user
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+# Install Calico Network Plugin
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml -O
 
-# Install Calico Pod Network Add-on
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f calico.yaml
 
+# Install Metrics Server
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/main/deploy/kubernetes/metrics-server-deployment.yaml
 
 
 
 # =================================   PORT   ====================================
 
 # Allow 6443
-sudo ufw allow 6443
+# sudo ufw allow 6443
 
-sudo ufw enable
+# sudo ufw enable
 sudo ufw status
 
 
