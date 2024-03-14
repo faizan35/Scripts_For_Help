@@ -4,8 +4,16 @@
 
 set -euxo pipefail
 
+# Check if control plane IP argument is provided, otherwise exit
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <control_plane_ip>"
+    exit 1
+fi
+
+
 # Replace the control plane IP with the appropriate IP address
-control_plane_ip="192.168.0.11"
+# control_plane_ip="192.168.0.11"
+control_plane_ip="$1"
 
 sudo kubeadm config images pull
 
@@ -24,7 +32,7 @@ sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
 # sudo cp -i /etc/kubernetes/admin.conf $config_path/configs/config
 # sudo chmod 644 $config_path/configs/config
 
-# Install Calico Network Plugin
+# # Install Calico Network Plugin
 # sudo curl https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml -O
 
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml
