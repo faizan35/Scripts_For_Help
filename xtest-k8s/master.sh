@@ -31,7 +31,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-serve
 
 
 
-# =================================   PORT   ====================================
+# ================================   PORT   ====================================
 
 # Allow 6443
 # sudo ufw allow 6443
