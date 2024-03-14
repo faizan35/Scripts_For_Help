@@ -4,12 +4,12 @@
 
 
 # Add Docker's official GPG key:
-sudo apt-get update
+# sudo apt-get update
 
-sudo apt-get install -y ufw
+# sudo apt-get install -y ufw
 
-sudo ufw allow 6443
-sudo ufw enable
+# sudo ufw allow 6443
+# sudo ufw enable
 
 ##########################
 
@@ -47,7 +47,7 @@ sudo sysctl --system
 
 # Install CRIO Runtime
 sudo apt-get update -y
-sudo apt-get install -y software-properties-common curl apt-transport-https ca-certificates
+sudo apt-get install -y software-properties-common curl apt-transport-https ca-certificates ufw
 
 curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key |
     gpg --dearmor -o /etc/apt/trusted.gpg.d/cri-o.gpg
