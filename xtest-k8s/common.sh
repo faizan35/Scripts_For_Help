@@ -47,7 +47,7 @@ sudo sysctl --system
 ## Install CRIO Runtime
 
 sudo apt-get update -y
-apt-get install -y software-properties-common curl apt-transport-https ca-certificates
+apt-get install -y software-properties-common curl apt-transport-https ca-certificates gpg
 
 curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
