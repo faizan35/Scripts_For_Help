@@ -10,8 +10,8 @@ set -euxo pipefail
 #     exit 1
 # fi
 
-# File path for the TOKEN file
-TOKEN_FILE="$(dirname "$0")/TOKEN"
+# # File path for the TOKEN file
+# TOKEN_FILE="$(dirname "$0")/TOKEN"
 
 
 
@@ -46,7 +46,9 @@ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/main/deploy/kubernetes/metrics-server-deployment.yaml
 
 
-kubeadm token create --print-join-command > "$TOKEN_FILE"
+kubeadm token create --print-join-command
+
+# kubeadm token create --print-join-command > "$TOKEN_FILE"
 
 # ================================   PORT   ====================================
 
