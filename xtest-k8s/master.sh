@@ -4,11 +4,11 @@
 
 set -euxo pipefail
 
-# Check if control plane IP argument is provided, otherwise exit
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <control_plane_ip>"
-    exit 1
-fi
+# # Check if control plane IP argument is provided, otherwise exit
+# if [ $# -ne 1 ]; then
+#     echo "Usage: $0 <control_plane_ip>"
+#     exit 1
+# fi
 
 # File path for the TOKEN file
 TOKEN_FILE="$(dirname "$0")/TOKEN"
