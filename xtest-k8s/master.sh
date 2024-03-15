@@ -10,10 +10,15 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# File path for the TOKEN file
+TOKEN_FILE="$(dirname "$0")/TOKEN"
+
+
+
 
 # Replace the control plane IP with the appropriate IP address
-# control_plane_ip="192.168.0.11"
-control_plane_ip="$1"
+control_plane_ip="192.168.0.11"
+# control_plane_ip="$1"
 
 sudo kubeadm config images pull
 
@@ -41,7 +46,7 @@ kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/
 # kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/metrics-server/main/deploy/kubernetes/metrics-server-deployment.yaml
 
 
-kubeadm token create --print-join-command
+kubeadm token create --print-join-command > "$TOKEN_FILE"
 
 # ================================   PORT   ====================================
 
