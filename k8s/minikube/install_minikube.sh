@@ -22,3 +22,10 @@ chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 
 echo "Minikube and kubectl installation completed."
+echo "--------------------------------------------"
+echo "------------- Minikube Start ---------------"
+
+# Start Minikube
+minikube start
+
+

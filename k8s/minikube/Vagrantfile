@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/faizan35/scripts_For_Help.git
       cd scripts_For_Help/k8s/minikube/
       sudo cp install_minikube.sh ../../..
-      cd ~
+      cd ../../..
       chmod +x install_minikube.sh
       sudo rm -rf ~/scripts_For_Help/
 
