@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Update package index
+
 sudo apt update
 
 # Install VirtualBox
 sudo apt install -y virtualbox docker.io
+
+# Change ownership of Docker socket
+sudo chown $USER /var/run/docker.sock
 
 # Download Minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
