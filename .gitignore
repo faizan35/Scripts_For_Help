@@ -8,3 +8,7 @@ k8s/vagrant/master/ubuntu-bionic-18.04-cloudimg-console.log
 
 k8s/vagrant/node/.vagrant
 k8s/vagrant/node/ubuntu-bionic-18.04-cloudimg-console.log
+
+
+k8s/minikube/.vagrant
+k8s/minikube/ubuntu-bionic-18.04-cloudimg-console.log
